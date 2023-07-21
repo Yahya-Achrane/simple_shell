@@ -13,8 +13,10 @@
 #include <errno.h>
 #include <stddef.h>
 
-int execute(char *line, char **av, char **env, char **args);
+int execute(char **line);
 char *ft_substr(char *s, unsigned int start, size_t len);
 size_t _strlcpy(char *dst, const char *src, size_t dstsize);
+char **create_tokens(char *line);
+char *get_path(char *input);
 
 #endif
