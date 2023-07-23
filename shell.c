@@ -13,10 +13,11 @@ int main(int ac, char **av, char **env)
 	size_t length = 0;
 	ssize_t read_line = 0;
 	int status = 0;
-	char *huh;
+	char **tokens;
 
 	(void)ac;
 	(void)av;
+	(void)env;
 	while (1)
 	{
 		if (isatty(STDIN_FILENO))
@@ -30,8 +31,8 @@ int main(int ac, char **av, char **env)
 		}
 		if (block[0] == '\n')
 		continue;
-		huh = ft_substr(block, 0, strlen(block) - 1);
-		status = execute(huh, NULL, env, NULL);
+		tokens = create_tokens(block);
+		status = execute(tokens);
 	}
 	free(block);
 	return (status);
