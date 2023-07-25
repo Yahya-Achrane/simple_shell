@@ -34,12 +34,16 @@ int main(int ac, char **av, char **env)
         tokens = create_tokens(block);
         if (strcmp(tokens[0], "env") == 0)
         {
-            status = builtin_env(tokens);
+		status = builtin_env(tokens);
         }
         else if (strcmp(tokens[0], "exit") == 0)
         {
-            status = builtin_exit(tokens);
+		status = builtin_exit(tokens);
         }
+	else if (strcmp(tokens[0], "cd") == 0)
+	{
+		status = builtin_cd(tokens);
+	}
         else
         {
             status = execute(tokens);
