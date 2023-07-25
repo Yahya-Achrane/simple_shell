@@ -14,11 +14,11 @@ char **create_tokens(char *line)
 	int position = 0;
 
 	line_copy = strdup(line);
-	token = strtok(line, delim);
+	token = _strtok(line, delim);
 	while (token)
 	{
 		tokens_count++;
-		token = strtok(NULL, delim);
+		token = _strtok(NULL, delim);
 	}
 	tokens_count++;
 	tokens = malloc(sizeof( char *) * tokens_count);
@@ -27,12 +27,12 @@ char **create_tokens(char *line)
 		perror("tokens alloacation");
 		return (NULL);
 	}
-	token = strtok(line_copy, delim);
+	token = _strtok(line_copy, delim);
 	while (token)
 	{
 		tokens[position] = token;
 		position++;
-		token = strtok(NULL, delim);
+		token = _strtok(NULL, delim);
 	}
 	tokens[position] = NULL;
 	return (tokens);
