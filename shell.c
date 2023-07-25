@@ -1,9 +1,9 @@
 #include "shell.h"
 /**
  * main - The main function of the shell.
- * @param ac: Argument count
- * @param av: Argument vector
- * @param env: Environment variables
+ * @ac: Argument count
+ * @av: Argument vector
+ * @env: Environment variables
  * Return: returns 0 on succ
  */
 
@@ -18,11 +18,13 @@ int main(int ac, char **av, char **env)
     (void)ac;
     (void)av;
     (void)env;
+
+    signal(SIGINT, sig_Handler);
     while (1)
     {
         if (isatty(STDIN_FILENO))
             write(STDOUT_FILENO, "$ ", 2);
-        read_line = getline(&block, &length, stdin);
+        read_line = _getline(&block, &length, STDIN_FILENO);
         if (read_line == -1)
         {
             if (isatty(STDIN_FILENO))
