@@ -1,5 +1,9 @@
 #include "shell.h"
-
+/*
+ * builtin_env - Prints the environment variables.
+ * @args: The arguments passed to the function.
+ * return: 0 on success, 1 on failure.
+ */
 int builtin_env(char **args)
 {
     int i;
@@ -34,6 +38,10 @@ int builtin_env(char **args)
     return (0);
 }
 
+/*
+ * count_env - Counts the number of environment variables.
+ * return: The number of environment variables.
+ */
 int count_env(void)
 {
     int count = 0;
@@ -46,6 +54,11 @@ int count_env(void)
     return (count);
 }
 
+/*
+ * free_array - Frees the memory allocated for an array of strings.
+ *@array: The array of strings to free.
+ *Return: Void.
+ */
 void free_array(char **array)
 {
     int i;
@@ -57,6 +70,11 @@ void free_array(char **array)
     free(array);
 }
 
+/*
+ * builtin_exit - Exits the shell.
+ * args: The arguments passed to the function.
+ * return: 0 on success, 1 on failure.
+ */
 int builtin_exit(char **args)
 {
     if (args[1])

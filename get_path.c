@@ -1,5 +1,10 @@
 #include "shell.h"
-
+/*
+ * get_path.c - searches the PATH environment variable for the path.
+ *@input: The command to seacrh for.
+ * Return: If the command is found,returns a pointer
+ * to the path. If the command is not found, returns NULL.
+ */
 char *get_path(char *input)
 {
 	char *path, *token, *path_to_file, *env;
@@ -34,6 +39,3 @@ char *get_path(char *input)
 	}
 	return (NULL);
 }
-
-
-
