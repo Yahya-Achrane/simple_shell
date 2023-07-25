@@ -21,6 +21,7 @@ char **create_tokens(char *line);
 char *get_path(char *input);
 int builtin_exit(char **args);
 int builtin_env(char **args);
+int builtin_cd(char **args);
 int count_env(void);
 void free_array(char **array);
 

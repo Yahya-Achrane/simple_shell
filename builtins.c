@@ -61,9 +61,44 @@ int builtin_exit(char **args)
 {
     if (args[1])
     {
-        write(STDERR_FILENO, "exit: too many arguments\n", 22);
+	if (atoi(args[1]) == 0)
+	{
+		write(STDERR_FILENO, "exit: too many arguments\n", 22);
+	}
+	else
+	{
+		exit(atoi(args[1]));
+	}
         return (1);
     }
-
     exit(0);
+}
+
+int builtin_cd(char **args)
+{
+	char *dir;
+
+	if (args[1])
+	{
+		if (strcmp(args[1], "~") == 0 || strcmp(args[1], "-") == 0)
+		{
+			dir = getenv("HOME");
+		}
+		else
+		{
+			dir = malloc(strlen(args[1]) * sizeof(char *));
+			strcpy(dir, args[1]);
+		}
+	}
+	else
+	{
+		dir = getenv("HOME");
+	}
+		
+	if (chdir(dir) != 0)
+	{
+		perror("chdir");
+		return (1);
+	}
+	return (0);
 }
