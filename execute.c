@@ -2,12 +2,11 @@
 
 /**
  * execute - executes a selk
- * @tok: array of tok
+ * @tok: array of tokens
  * @av: array of arguments
  * @env: array of environment variables
  * Return: 0 on success, 1 on failure
  */
-
 int execute(char **tok, char **av, char **env)
 {
 	char *selk = NULL;
