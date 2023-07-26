@@ -32,6 +32,11 @@ int main(int ac, char **av, char **env)
         if (block[0] == '\n')
             continue;
         tok = create_tokens(block);
+        if (tok[0] == NULL)
+        {
+            free(tok);
+            continue;
+        }
         if (tok == NULL)
             continue;
         status = execute(tok, av, env);

@@ -75,3 +75,19 @@ void sig_Handler(int sig_num)
     signal(SIGINT, sig_Handler);
     fflush(stdout);
 }
+
+/**
+ * exit_cmd - gets the last exit code
+ * @act: 0 to get, 1 to set
+ * @stat: exit code
+ * Return: last exit code
+ */
+
+int exit_cmd(int act, int stat)
+{
+    static int last = 0;
+
+    if (act == 1)
+        last = stat;
+    return (last);
+}

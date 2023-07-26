@@ -15,10 +15,17 @@ int execute(char **tok, char **av, char **env)
     int i = 0;
 
     if (is_builtins(tok, av, env) == 0)
+    {
+        exit_cmd(1, 0);
         return (0);
+    }
     selk = get_path(tok[0]);
     if (selk == NULL)
+    {
+        perror(av[0]);
+        exit_cmd(1, 127);
         return (1);
+    }
     if (!access(selk, X_OK))
     {
         child_pid = fork();
@@ -38,6 +45,12 @@ int execute(char **tok, char **av, char **env)
         }
         else
             wait(&i);
+        exit_cmd(1, 0);
+    }
+    else
+    {
+        perror(av[0]);
+        exit_cmd(1, 126);
     }
     return (i);
 }
