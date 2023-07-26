@@ -5,7 +5,6 @@
  * @line: string to create_tokens
  * Return: pointer to an array of tokens
  */
-
 char **create_tokens(char *line)
 {
     char **tokens = NULL;
@@ -36,7 +35,6 @@ char **create_tokens(char *line)
  * split_string - cuts a string when # is encountered
  * @str: string to be cut
  */
-
 void split_string(char *str)
 {
     int i = 0;
