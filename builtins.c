@@ -4,7 +4,6 @@
  * _printenv - prints the environment variables
  * @env: array of environment variables
  */
-
 void _printenv(char **env)
 {
     int i = 0, j = 0;
@@ -29,7 +28,6 @@ void _printenv(char **env)
  * @env: array of environment variables
  * Return: 0 if builtin, 1 if not
  */
-
 int is_builtins(char **tok, char **av, char **env)
 {
     (void)av;
