@@ -5,7 +5,6 @@
  * @str: string to be measured
  * Return: length of string
  */
-
 int _strlen(char *str)
 {
 	int i = 0;
@@ -22,7 +21,6 @@ int _strlen(char *str)
  * @n: number of bytes to compare
  * Return: 0 if strings are equal, -1 if not
  */
-
 int _strncmp(char *str1, char *str2, int n)
 {
 	int i = 0;
