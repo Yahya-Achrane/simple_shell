@@ -103,3 +103,6 @@ $ cat file_name | ./hsh
 
 ## Bugs
 -
+## Authors
+Yahya Achrane
+Salifu Abdullai
