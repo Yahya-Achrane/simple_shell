@@ -6,7 +6,6 @@
  * @cmd: command to create the path to
  * Return: pointer to the path
  */
-
 char *make_path(char *path, char *cmd)
 {
     char *path_cmd = NULL;
@@ -25,7 +24,6 @@ char *make_path(char *path, char *cmd)
  * @cmd: command to get the path of
  * Return: path of the command
  */
-
 char *get_path(char *cmd)
 {
     char *path = NULL, *path_cp = NULL, *token = NULL, *path_cmd = NULL;
