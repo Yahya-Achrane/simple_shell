@@ -65,14 +65,16 @@ void p_free(char *p)
  */
 void ffree(char **p)
 {
-    char **temp = p;
+    int i = 0;
 
-    while (*p != NULL)
+    if (p == NULL)
+        return;
+
+    while (p[i] != NULL)
     {
-        free(*p);
-        p++;
+        free(p[i]);
+        i++;
     }
-    if (temp != NULL)
-        free(temp);
-    p = NULL;
+
+    free(p);
 }

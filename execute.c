@@ -18,10 +18,7 @@ int execute(char **tok, char **av, char **env)
         return (0);
     selk = get_path(tok[0]);
     if (selk == NULL)
-    {
-        perror(av[0]);
         return (1);
-    }
     if (!access(selk, X_OK))
     {
         child_pid = fork();
@@ -41,7 +38,6 @@ int execute(char **tok, char **av, char **env)
         }
         else
             wait(&i);
-        free(selk);
     }
     return (i);
 }

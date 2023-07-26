@@ -36,7 +36,7 @@ int is_builtins(char **tok, char **av, char **env)
 
     if (_strncmp(tok[0], "exit", 4) == 0)
     {
-        free(tok);
+        ffree(tok);
         exit(EXIT_SUCCESS);
     }
     if (_strncmp(tok[0], "env", 3) == 0)

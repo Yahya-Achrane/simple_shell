@@ -29,12 +29,13 @@ int main(int ac, char **av, char **env)
                 write(STDOUT_FILENO, "\n", 1);
             break;
         }
+        if (block[0] == '\n')
+            continue;
         tok = create_tokens(block);
         if (tok == NULL)
             continue;
         status = execute(tok, av, env);
         free(tok);
-        fflush(stdin);
     }
     free(block);
     return (status);
