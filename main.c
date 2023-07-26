@@ -1,0 +1,41 @@
+#include "main.h"
+
+/**
+ * main - starting point of the program
+ * @ac: number of arguments
+ * @av: array of arguments
+ * @env: array of environment variables
+ * Return: 0 on success, 1 on failure
+ */
+
+int main(int ac, char **av, char **env)
+{
+    char *block = NULL, **tok = NULL;
+    size_t ln = 0;
+    ssize_t read = 0;
+    int status = 0;
+
+    (void)ac;
+
+    signal(SIGINT, sig_Handler);
+    while (1)
+    {
+        if (isatty(STDIN_FILENO))
+            write(STDOUT_FILENO, "$ ", 2);
+        read = getline(&block, &ln, stdin);
+        if (read == -1)
+        {
+            if (isatty(STDIN_FILENO))
+                write(STDOUT_FILENO, "\n", 1);
+            break;
+        }
+        tok = create_tokens(block);
+        if (tok == NULL)
+            continue;
+        status = execute(tok, av, env);
+        free(tok);
+        fflush(stdin);
+    }
+    free(block);
+    return (status);
+}
