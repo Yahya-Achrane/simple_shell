@@ -8,31 +8,27 @@
 * @args: An array of strings containing the command and its arguments 
 * Return: The exit status of the executed command
 */
-int execute(char **line)
+int execute(char *line, char **av, char **env, char **args)
 {
 	pid_t pid;
 	int status;
-	char *path;
-
 	pid = fork();
+	
 	if (pid == 0)
 	{
-		
-		if (line)
-		{
-			path = get_path(line[0]);
-			if (execve(path, line, NULL) == -1)
-			{
-				perror("execve");
-				return (1);
-			}
-			return (0);
-		}
-		exit(1);
+		if (args != NULL)
+	{
+		execve(line, args, env);
+	}
+	else
+	{
+		execve(line, av, env);
+	}
+
+	exit(1);
 	}
 	else if (pid < 0)
 	{
-		perror("fork");
 		return (1);
 	}
 	else
