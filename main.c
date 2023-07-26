@@ -16,7 +16,6 @@ int main(int ac, char **av, char **env)
 	int status = 0;
 
 	(void)ac;
-
 	signal(SIGINT, sig_Handler);
 	while (1)
 	{
@@ -31,7 +30,8 @@ int main(int ac, char **av, char **env)
 		}
 		if (block[0] == '\n')
 			continue;
-		tok = create_tokens(block);
+		split_string(block);
+        tok = create_tokens(block);
 		if (tok[0] == NULL)
 		{
 			free(tok);
