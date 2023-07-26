@@ -7,19 +7,19 @@
 
 void _printenv(char **env)
 {
-    int i = 0, j = 0;
+	int i = 0, j = 0;
 
-    while (env[i] != NULL)
-    {
-        j = 0;
-        while (env[i][j] != '\0')
-        {
-            write(STDOUT_FILENO, &env[i][j], 1);
-            j++;
-        }
-        write(STDOUT_FILENO, "\n", 1);
-        i++;
-    }
+	while (env[i] != NULL)
+	{
+		j = 0;
+		while (env[i][j] != '\0')
+		{
+			write(STDOUT_FILENO, &env[i][j], 1);
+			j++;
+		}
+		write(STDOUT_FILENO, "\n", 1);
+		i++;
+	}
 }
 
 /**
@@ -32,19 +32,19 @@ void _printenv(char **env)
 
 int is_builtins(char **tok, char **av, char **env)
 {
-    (void)av;
+	(void)av;
 
-    if (_strncmp(tok[0], "exit", 4) == 0)
-    {
-        if (tok[1] != NULL)
-            exit(_atoi(tok[1]));
-        ffree(tok);
-        exit(exit_cmd(0, 0));
-    }
-    if (_strncmp(tok[0], "env", 3) == 0)
-    {
-        _printenv(env);
-        return (0);
-    }
-    return (1);
+	if (_strncmp(tok[0], "exit", 4) == 0)
+	{
+		if (tok[1] != NULL)
+		exit(_atoi(tok[1]));
+		ffree(tok);
+		exit(exit_cmd(0, 0));
+	}
+	if (_strncmp(tok[0], "env", 3) == 0)
+	{
+		_printenv(env);
+		return (0);
+	}
+	return (1);
 }
