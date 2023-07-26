@@ -33,5 +33,8 @@ char *make_path(char *path, char *cmd);
 char *get_path(char *cmd);
 int is_builtins(char **tokens, char **argv, char **env);
 char *_strcpy(char *dest, char *src);
+char *_strpbrk(char *str, const char *acc);
+int _strspn(char *str, const char *acc);
+char *_strtok(char *str, const char *dem);
 
 #endif
