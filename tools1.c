@@ -75,17 +75,21 @@ void sig_Handler(int sig_num)
 }
 
 /**
- * exit_cmd - gets the last exit code
- * @act: 0 to get, 1 to set
- * @stat: exit code
- * Return: last exit code
+ * _strcmp - compares two strings
+ * @str1: first string
+ * @str2: second string
+ * Return: 0 if strings are equal, -1 if not
  */
 
-int exit_cmd(int act, int stat)
+int _strcmp(char *str1, char *str2)
 {
-	static int last = 0;
+	int i = 0;
 
-	if (act == 1)
-		last = stat;
-	return (last);
+	while (str1[i] != '\0' && str2[i] != '\0')
+	{
+		if (str1[i] != str2[i])
+			return (-1);
+		i++;
+	}
+	return (0);
 }

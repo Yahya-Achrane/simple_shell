@@ -9,19 +9,21 @@
  */
 int main(int ac, char **av, char **env)
 {
-	char *block = NULL, **tok = NULL;
+	char *block = NULL;
 	size_t ln = 0;
-	ssize_t read = 0;
-	int status = 0;
+	int read = 0;
 
 	(void)ac;
 	signal(SIGINT, sig_Handler);
 	while (1)
 	{
 		if (isatty(STDIN_FILENO))
+		{
+			fflush(stdin);
 			write(STDOUT_FILENO, "$ ", 2);
+		}
 		read = _getline(&block, &ln, STDIN_FILENO);
-		if (read == -1)
+		if (read == EOF)
 		{
 			if (isatty(STDIN_FILENO))
 				write(STDOUT_FILENO, "\n", 1);
@@ -30,17 +32,12 @@ int main(int ac, char **av, char **env)
 		if (block[0] == '\n')
 			continue;
 		split_string(block);
-		tok = create_tokens(block);
-		if (tok[0] == NULL)
-		{
-			free(tok);
-			continue;
-		}
-		if (tok == NULL)
-			continue;
-		status = execute(tok, av, env, block);
-		free(tok);
+		if (read > 1)
+			block[read - 1] = '\0';
+		get_input(block, env, av);
+		ln = 0;
+		block = NULL;
 	}
 	free(block);
-	return (status);
+	return (0);
 }

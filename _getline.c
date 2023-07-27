@@ -10,12 +10,10 @@
 
 ssize_t _getline(char **buf, size_t *size_buf, int fild)
 {
-    ssize_t n_characters;
-    char *n_buf;
+    ssize_t var = 0;
 
     if (buf == NULL || size_buf == NULL)
         return (-1);
-
     if (*buf == NULL)
     {
         *buf = malloc(sizeof(char) * READ_SIZE);
@@ -23,28 +21,11 @@ ssize_t _getline(char **buf, size_t *size_buf, int fild)
             return (-1);
         *size_buf = READ_SIZE;
     }
-
-    n_characters = read(fild, *buf, *size_buf);
-
-    if (n_characters == -1)
+    var = read(fild, *buf, *size_buf);
+    if (var == -1)
+    {
+        free(*buf);
         return (-1);
-
-    if (n_characters == 0)
-        return (n_characters);
-
-    if (*(*buf + n_characters - 1) == '\n')
-        return (n_characters);
-
-    n_buf = malloc(sizeof(char) * (*size_buf + READ_SIZE));
-    if (n_buf == NULL)
-        return (-1);
-
-    memcpy(n_buf, *buf, n_characters);
-
-    free(*buf);
-
-    *buf = n_buf;
-    *size_buf += READ_SIZE;
-
-    return (n_characters);
+    }
+    return (var);
 }
