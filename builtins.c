@@ -26,28 +26,26 @@ void _printenv(char **env)
  * @tok: array of tok
  * @av: array of arguments
  * @env: array of environment variables
+ * @l: ptr to buf
  * Return: 0 if builtin, 1 if not
  */
-int is_builtins(char **tok, char **av, char **env)
+int is_builtins(char **tok, char **av, char **env, char *ln)
 {
     (void)av;
 
     if (_strncmp(tok[0], "exit", 4) == 0)
     {
-        if (tok[1] != NULL)
-        {
-            if (check_num(tok[1]))
-            {
-                exit(2);
-                exit(_atoi(tok[1]));
-            }
-        }
-        ffree(tok);
-        exit(exit_cmd(0, 0));
+        h_exit(tok, ln);
+        return (0);
     }
     if (_strncmp(tok[0], "env", 3) == 0)
     {
         _printenv(env);
+        return (0);
+    }
+    if (_strncmp(tok[0], "echo", 4) == 0)
+    {
+        _echo(tok);
         return (0);
     }
     return (1);

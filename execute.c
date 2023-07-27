@@ -1,5 +1,4 @@
 #include "main.h"
-
 /**
  * execute - executes a selk
  * @tok: array of tokens
@@ -7,13 +6,13 @@
  * @env: array of environment variables
  * Return: 0 on success, 1 on failure
  */
-int execute(char **tok, char **av, char **env)
+int execute(char **tok, char **av, char **env, char *ln)
 {
 	char *selk = NULL;
 	pid_t child_pid = 0;
 	int i = 0;
 
-	if (is_builtins(tok, av, env) == 0)
+	if (is_builtins(tok, av, env, ln) == 0)
 	{
 		exit_cmd(1, 0);
 		return (0);
@@ -21,7 +20,7 @@ int execute(char **tok, char **av, char **env)
 	selk = get_path(tok[0]);
 	if (selk == NULL)
 	{
-		perror(av[0]);
+		_perror(tok, av);
 		exit_cmd(1, 127);
 		return (1);
 	}
@@ -44,9 +43,9 @@ int execute(char **tok, char **av, char **env)
 			}
 		}
 		else
-
 			wait(&i);
 		exit_cmd(1, 0);
+		free(selk);
 	}
 	else
 	{

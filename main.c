@@ -9,7 +9,7 @@
  */
 int main(int ac, char **av, char **env)
 {
-	 char *block = NULL, **tok = NULL;
+	char *block = NULL, **tok = NULL;
 	size_t ln = 0;
 	ssize_t read = 0;
 	int status = 0;
@@ -30,7 +30,7 @@ int main(int ac, char **av, char **env)
 		if (block[0] == '\n')
 			continue;
 		split_string(block);
-        tok = create_tokens(block);
+		tok = create_tokens(block);
 		if (tok[0] == NULL)
 		{
 			free(tok);
@@ -38,7 +38,7 @@ int main(int ac, char **av, char **env)
 		}
 		if (tok == NULL)
 			continue;
-		status = execute(tok, av, env);
+		status = execute(tok, av, env, block);
 		free(tok);
 	}
 	free(block);
