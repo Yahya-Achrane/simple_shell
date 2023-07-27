@@ -12,6 +12,11 @@
 #include <errno.h>
 #include <signal.h>
 
+#define READ_SIZE 1024
+#define BUFSIZE 1024
+
+ssize_t _getline(char **buf, size_t *size_buf, int fild);
+
 extern char **environ;
 
 char **create_tokens(char *line);

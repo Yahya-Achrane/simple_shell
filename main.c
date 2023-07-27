@@ -20,7 +20,7 @@ int main(int ac, char **av, char **env)
 	{
 		if (isatty(STDIN_FILENO))
 			write(STDOUT_FILENO, "$ ", 2);
-		read = getline(&block, &ln, stdin);
+		read = _getline(&block, &ln, STDIN_FILENO);
 		if (read == -1)
 		{
 			if (isatty(STDIN_FILENO))
