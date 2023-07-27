@@ -55,3 +55,18 @@ void _perror(char **tokens, char **argv)
     write(STDERR_FILENO, tokens[0], _strlen(tokens[0]));
     write(STDERR_FILENO, ": not found\n", 12);
 }
+
+/**
+ * _constlen - counts the number of characters in a constant string
+ * @str: constant string
+ * Return: number of characters in the string
+ */
+
+int _constlen(const char *str)
+{
+    int i = 0;
+
+    while (str[i] != '\0')
+        i++;
+    return (i);
+}

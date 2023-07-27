@@ -41,4 +41,8 @@ int h_exit(char **tokens, char *line);
 void _printv(int val);
 void _printk(char **tok, int i);
 void _perror(char **tokens, char **argv);
+void _cd(char **args);
+void cd_cd(char **dir, char *cmd_nm);
+int _constlen(const char *str);
+void p_error(char *argv, int count, char *cmd, char *msg);
 #endif

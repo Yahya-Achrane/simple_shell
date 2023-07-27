@@ -48,5 +48,10 @@ int is_builtins(char **tok, char **av, char **env, char *ln)
         _echo(tok);
         return (0);
     }
+    if (_strncmp(tok[0], "cd", 2) == 0)
+    {
+        _cd(tok);
+        return (0);
+    }
     return (1);
 }
