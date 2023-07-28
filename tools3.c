@@ -1,114 +1,86 @@
 #include "main.h"
+
 /**
- * _strchr - locates a character in a string
- * @s: string to search
- * @c: character to find
- * Return: pointer to the first occurrence of the character c
- * in the string s, or NULL if the character is not found
+ * _atoi - converts a string to an integer
+ * @str: string to be converted
+ * Return: integer value of the string
  */
 
-char *_strchr(char *s, char c)
+int _atoi(char *str)
 {
-    int i = 0;
+    int i = 0, s = 1, n = 0;
 
-    while (s[i] != '\0')
+    while (str[i] != '\0')
     {
-        if (s[i] == c)
+        if (str[i] == '-')
+            s *= -1;
+        if (str[i] >= '0' && str[i] <= '9')
+            n = n * 10 + s * (str[i] - '0');
+        if (n != 0 && !(str[i] >= '0' && str[i] <= '9'))
             break;
         i++;
     }
-
-    if (s[i] == c)
-        return (s + i);
-    else
-        return (NULL);
-}
-
-/**
- * _strcat - concatenates two strings
- * @dest: destination string
- * @src: source string
- * Return: pointer to the concatenated string
- */
-
-char *_strcat(char *dest, char *src)
-{
-    int i, j;
-
-    i = 0;
-    j = 0;
-    while (dest[i] != '\0')
-        i++;
-
-    while (src[j] != '\0')
-    {
-        dest[i] = src[j];
-        j++;
-        i++;
-    }
-
-    dest[i] = '\0';
-
-    return (dest);
-}
-
-/**
- * _realloc - reallocates a memory block
- * @ptr: pointer to the memory previously allocated
- * @old_size: size of the allocated space for ptr
- * @new_size: new size of the new memory block
- * Return: pointer to the new memory block
- */
-
-void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
-{
-    char *new_ptr;
-    unsigned int i;
-
-    if (new_size == old_size)
-        return (ptr);
-
-    if (ptr == NULL)
-        return (malloc(new_size));
-
-    if (new_size == 0 && ptr != NULL)
-        return (NULL);
-
-    new_ptr = malloc(new_size);
-    if (new_ptr == NULL)
-        return (NULL);
-
-    for (i = 0; i < old_size && i < new_size; i++)
-        new_ptr[i] = ((char *)ptr)[i];
-
-    return (new_ptr);
+    return (n);
 }
 /**
- * _strcatpath - concatenates two strings
- * @dest: destination string
- * @src: source string
- * Return: pointer to the concatenated string
+ * _itoa - converts an integer to a string
+ * @num: integer to be converted
+ * Return: pointer to the converted string
  */
 
-char *_strcatpath(char *dest, char *src)
+char *_itoa(int n)
 {
-    int i = 0, j = 0;
-    char *concat = NULL;
+    int i = 0, j = 0, k = 0, l = 0, m = 0;
+    char *str = NULL;
 
-    concat = malloc(sizeof(char) * (_strlen(dest) + _strlen(src) + 1));
-    if (concat == NULL)
+    if (n == 0)
+    {
+        str = malloc(sizeof(char) * 2);
+        if (str == NULL)
+            return (NULL);
+        str[0] = '0';
+        str[1] = '\0';
+        return (str);
+    }
+    if (n < 0)
+        l = 1;
+    m = n;
+    while (m != 0)
+    {
+        m /= 10;
+        i++;
+    }
+    str = malloc(sizeof(char) * (i + 1 + l));
+    if (str == NULL)
         return (NULL);
-    while (dest[i] != '\0')
+    if (l == 1)
+        str[0] = '-';
+    for (j = i - 1 + l; j >= l; j--)
     {
-        concat[i] = dest[i];
+        k = n % 10;
+        if (k < 0)
+            k *= -1;
+        str[j] = k + '0';
+        n /= 10;
+    }
+    str[i + l] = '\0';
+    return (str);
+}
+/**
+ * check_num - checks if a string is a number
+ * @str: string to check
+ * Return: 0 if number, 1 if not
+ */
+
+int check_num(char *str)
+{
+    int i = 0;
+
+    while (str[i] != '\0')
+    {
+        if (str[i] < '0' || str[i] > '9')
+            return (1);
         i++;
     }
-    while (src[j] != '\0')
-    {
-        concat[i] = src[j];
-        i++;
-        j++;
-    }
-    concat[i] = '\0';
-    return (concat);
+    return (0);
 }

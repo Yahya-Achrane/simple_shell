@@ -6,32 +6,27 @@
  * Return: pointer to the environment variable
  */
 
-char *get_env(char *key)
+char *get_env(char *name)
 {
-	unsigned int i = 0;
-	char *path;
-	char **env;
-	int vect = 0, j = 0;
+	char **env = NULL, *var = NULL, *value = NULL;
+	int i = 0, j = 0, len = 0;
 
-	while (environ[vect])
-		vect++;
-
-	env = malloc(sizeof(char *) * (vect + 1));
-
-	for (j = 0; j < vect; j++)
-		env[j] = _strdup(environ[j]);
-
-	env[vect] = NULL;
-
-	while (env[i])
+	env = environ;
+	while (env[i] != NULL)
 	{
-		path = strtok(env[i], "=");
-		if (strcmp(key, env[i]) == 0)
+		var = env[i];
+		len = _strlen(name);
+		for (j = 0; j < len; j++)
 		{
-			path = strtok(NULL, "\n");
-			return (path);
+			if (name[j] != var[j])
+				break;
+		}
+		if (j == len && var[j] == '=')
+		{
+			value = var + len + 1;
+			break;
 		}
 		i++;
 	}
-	return (NULL);
+	return (value);
 }

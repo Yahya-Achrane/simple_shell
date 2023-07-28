@@ -1,6 +1,33 @@
 #include "main.h"
 
 /**
+ * _strcat - concatenates two strings
+ * @dest: destination string
+ * @src: source string
+ * Return: pointer to the concatenated string
+ */
+char *_strcat(char *dest, char *src)
+{
+    int i, j;
+
+    i = 0;
+    j = 0;
+    while (dest[i] != '\0')
+        i++;
+
+    while (src[j] != '\0')
+    {
+        dest[i] = src[j];
+        j++;
+        i++;
+    }
+
+    dest[i] = '\0';
+
+    return (dest);
+}
+
+/**
  * _strcpy - copies a string
  * @dest: destination string
  * @src: source string
@@ -8,112 +35,46 @@
  */
 char *_strcpy(char *dest, char *src)
 {
-	int i = 0;
+    int i = 0;
 
-	while (src[i] != '\0')
-	{
-		dest[i] = src[i];
-		i++;
-	}
-	dest[i] = '\0';
-	return (dest);
-}
-/**
- * _constlen - counts the number of characters in a constant string
- * @str: constant string
- * Return: number of characters in the string
- */
-
-int _constlen(const char *str)
-{
-	int i = 0;
-
-	while (str[i] != '\0')
-		i++;
-	return (i);
-}
-/**
- * split_string - cuts a string when # is encountered
- * @str: string to be cut
- */
-void *split_string(char *str)
-{
-	int i = 0;
-
-	while (str[i] != '\0')
-	{
-		if (str[i] == '#')
-		{
-			str[i] = '\0';
-			break;
-		}
-		i++;
-	}
-	return (str);
-}
-/**
- * _atoi - converts a string to an integer
- * @str: string to be converted
- * Return: integer value of the string
- */
-
-int _atoi(char *str)
-{
-    int i = 0, s = 1, n = 0;
-
-    while (str[i] != '\0')
+    while (src[i] != '\0')
     {
-        if (str[i] == '-')
-            s *= -1;
-        if (str[i] >= '0' && str[i] <= '9')
-            n = n * 10 + s * (str[i] - '0');
-        if (n != 0 && !(str[i] >= '0' && str[i] <= '9'))
-            break;
+        dest[i] = src[i];
         i++;
     }
-    return (n);
+    dest[i] = '\0';
+    return (dest);
 }
+
 /**
- * _itoa - converts an integer to a string
- * @num: integer to be converted
- * Return: pointer to the converted string
+ * p_free - frees a pointer
+ * @p: pointer to be freed
+ * Return: void
  */
-
-char *_itoa(int n)
+void p_free(char *p)
 {
-    int i = 0, j = 0, k = 0, l = 0, m = 0;
-    char *str = NULL;
+    if (p != NULL)
+        free(p);
+    p = NULL;
+}
 
-    if (n == 0)
+/**
+ * ffree - frees a double pointer
+ * @p: double pointer to be freed
+ * Return: void
+ */
+void ffree(char **p)
+{
+    int i = 0;
+
+    if (p == NULL)
+        return;
+
+    while (p[i] != NULL)
     {
-        str = malloc(sizeof(char) * 2);
-        if (str == NULL)
-            return (NULL);
-        str[0] = '0';
-        str[1] = '\0';
-        return (str);
-    }
-    if (n < 0)
-        l = 1;
-    m = n;
-    while (m != 0)
-    {
-        m /= 10;
+        free(p[i]);
         i++;
     }
-    str = malloc(sizeof(char) * (i + 1 + l));
-    if (str == NULL)
-        return (NULL);
-    if (l == 1)
-        str[0] = '-';
-    for (j = i - 1 + l; j >= l; j--)
-    {
-        k = n % 10;
-        if (k < 0)
-            k *= -1;
-        str[j] = k + '0';
-        n /= 10;
-    }
-    str[i + l] = '\0';
-    return (str);
+
+    free(p);
 }

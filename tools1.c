@@ -5,6 +5,7 @@
  * @str: string to be measured
  * Return: length of string
  */
+
 int _strlen(char *str)
 {
 	int i = 0;
@@ -21,6 +22,7 @@ int _strlen(char *str)
  * @n: number of bytes to compare
  * Return: 0 if strings are equal, -1 if not
  */
+
 int _strncmp(char *str1, char *str2, int n)
 {
 	int i = 0;
@@ -75,21 +77,17 @@ void sig_Handler(int sig_num)
 }
 
 /**
- * _strcmp - compares two strings
- * @str1: first string
- * @str2: second string
- * Return: 0 if strings are equal, -1 if not
+ * exit_cmd - gets the last exit code
+ * @act: 0 to get, 1 to set
+ * @stat: exit code
+ * Return: last exit code
  */
 
-int _strcmp(char *str1, char *str2)
+int exit_cmd(int act, int stat)
 {
-	int i = 0;
+	static int last = 0;
 
-	while (str1[i] != '\0' && str2[i] != '\0')
-	{
-		if (str1[i] != str2[i])
-			return (-1);
-		i++;
-	}
-	return (0);
+	if (act == 1)
+		last = stat;
+	return (last);
 }
