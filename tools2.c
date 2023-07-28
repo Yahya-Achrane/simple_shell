@@ -8,23 +8,19 @@
  */
 char *_strcat(char *dest, char *src)
 {
-    int i, j;
+	int i = 0, j = 0;
 
-    i = 0;
-    j = 0;
-    while (dest[i] != '\0')
-        i++;
+	while (dest[i] != '\0')
+		i++;
 
-    while (src[j] != '\0')
-    {
-        dest[i] = src[j];
-        j++;
-        i++;
-    }
-
-    dest[i] = '\0';
-
-    return (dest);
+	while (src[j] != '\0')
+	{
+		dest[i] = src[j];
+		j++;
+		i++;
+	}
+	dest[i] = '\0';
+	return (dest);
 }
 
 /**
@@ -35,15 +31,15 @@ char *_strcat(char *dest, char *src)
  */
 char *_strcpy(char *dest, char *src)
 {
-    int i = 0;
+	int i = 0;
 
-    while (src[i] != '\0')
-    {
-        dest[i] = src[i];
-        i++;
-    }
-    dest[i] = '\0';
-    return (dest);
+	while (src[i] != '\0')
+	{
+		dest[i] = src[i];
+		i++;
+	}
+	dest[i] = '\0';
+	return (dest);
 }
 
 /**
@@ -53,9 +49,9 @@ char *_strcpy(char *dest, char *src)
  */
 void p_free(char *p)
 {
-    if (p != NULL)
-        free(p);
-    p = NULL;
+	if (p != NULL)
+		free(p);
+	p = NULL;
 }
 
 /**
@@ -65,16 +61,15 @@ void p_free(char *p)
  */
 void ffree(char **p)
 {
-    int i = 0;
+	int i = 0;
 
-    if (p == NULL)
-        return;
+	if (p == NULL)
+		return;
+	while (p[i] != NULL)
+	{
+		free(p[i]);
+		i++;
+	}
 
-    while (p[i] != NULL)
-    {
-        free(p[i]);
-        i++;
-    }
-
-    free(p);
+	free(p);
 }

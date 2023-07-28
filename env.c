@@ -5,7 +5,6 @@
  * @name: name of the environment variable
  * Return: pointer to the environment variable
  */
-
 char *get_env(char *name)
 {
 	char **env = NULL, *var = NULL, *value = NULL;
