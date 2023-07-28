@@ -21,11 +21,11 @@ char **create_tokens(char *line)
         perror("Fatal Error");
         return (NULL);
     }
-    token = _strtok(line, " \n\t\r");
+    token = _strtok(line, " \n\t\r;");
     while (token != NULL)
     {
         tokens[i] = token;
-        token = _strtok(NULL, " \n\t\r");
+        token = _strtok(NULL, " \n\t\r;");
         i++;
     }
     tokens[i] = NULL;
