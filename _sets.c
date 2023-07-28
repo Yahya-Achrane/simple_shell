@@ -24,8 +24,9 @@ void _printv(int val)
 
 void _printk(char **tok, int i)
 {
-    int j = 0;
+    int j;
 
+    j = 0;
     while (tok[i] != NULL)
     {
         j = 0;

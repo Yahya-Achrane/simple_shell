@@ -22,12 +22,14 @@ int _echo(char **tok)
         _printv(getpid());
         flag = 1;
         i++;
+        return (0);
     }
     if (_strncmp(tok[1], "$?", 2) == 0)
     {
         _printv(exit_cmd(0, 0));
         flag = 1;
         i++;
+        return (0);
     }
     if (_strncmp(tok[1], "$", 1) == 0)
     {
