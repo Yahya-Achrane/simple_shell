@@ -41,5 +41,9 @@ int h_exit(char **tokens, char *line);
 void _printv(int val);
 void _printk(char **tok, int i);
 void _perror(char **tokens, char **argv);
+void set(char **environment, char *name, char *value);
+void _cd(char **arg);
+void cd_cd(char **dir, char *cmd_nm);
+char **_path(char *q, char **arg);
+void my_error(char *argv, int count, char *cmd, char *msg);
 #endif
-

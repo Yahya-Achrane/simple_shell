@@ -50,7 +50,7 @@ int execute(char **tok, char **av, char **env, char *ln)
 			wait(&i);
 		}
 		exit_cmd(1, 0);
-		free(selk);
+		/*free(selk);*/
 	}
 	else
 	{

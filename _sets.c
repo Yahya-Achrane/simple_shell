@@ -23,20 +23,21 @@ void _printv(int val)
  */
 void _printk(char **tok, int i)
 {
-	int j = 0;
+    int j;
 
-	while (tok[i] != NULL)
-	{
-		j = 0;
-		while (tok[i][j] != '\0')
-		{
-			write(STDOUT_FILENO, &tok[i][j], 1);
-			j++;
-		}
-		if (tok[i + 1] != NULL)
-			write(STDOUT_FILENO, " ", 1);
-		i++;
-	}
+    j = 0;
+    while (tok[i] != NULL)
+    {
+        j = 0;
+        while (tok[i][j] != '\0')
+        {
+            write(STDOUT_FILENO, &tok[i][j], 1);
+            j++;
+        }
+        if (tok[i + 1] != NULL)
+            write(STDOUT_FILENO, " ", 1);
+        i++;
+    }
 }
 
 /**
