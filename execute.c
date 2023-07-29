@@ -5,9 +5,9 @@
  * @tok: array of tok
  * @av: array of arguments
  * @env: array of environment variables
+ * @ln: line
  * Return: 0 on success, 1 on failure
  */
-
 int execute(char **tok, char **av, char **env, char *ln)
 {
 	char *selk = NULL;
@@ -45,8 +45,10 @@ int execute(char **tok, char **av, char **env, char *ln)
 			}
 		}
 		else
+		{
 
 			wait(&i);
+		}
 		exit_cmd(1, 0);
 		/*free(selk);*/
 	}
